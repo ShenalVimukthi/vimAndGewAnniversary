@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Great+Vibes&family=Outfit:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary-pink: #ff69b4;
+  --hot-pink: #ff1493;
+  --soft-pink: #ffb6c1;
+  --blush-pink: #fff0f5;
+  --deep-red: #d32f2f;
+  --crimson-red: #e60023;
+  --ruby-red: #ff2d55;
+  --gold-accent: #ffd700;
+  
+  --glass-bg: rgba(255, 240, 245, 0.16);
+  --glass-bg-hover: rgba(255, 240, 245, 0.28);
+  --glass-card-bg: rgba(255, 255, 255, 0.12);
+  --glass-border: rgba(255, 182, 193, 0.45);
+  --glass-border-glow: rgba(255, 45, 85, 0.6);
+  --glass-shadow: 0 12px 40px 0 rgba(220, 20, 60, 0.2);
+  
+  --font-main: 'Outfit', 'Poppins', sans-serif;
+  --font-romantic: 'Dancing Script', cursive;
+  --font-fancy: 'Great Vibes', cursive;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-main);
+  background-color: #120309;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at 15% 15%, #4a001a 0%, #1e000a 45%, #0d0105 100%);
+  background-attachment: fixed;
+  position: relative;
+  overflow-x: hidden;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Background Ambient Glow Orbs */
+.bg-glow-orb-1 {
+  position: fixed;
+  top: -10%;
+  left: -10%;
+  width: 50vw;
+  height: 50vw;
+  max-width: 600px;
+  max-height: 600px;
+  background: radial-gradient(circle, rgba(255, 45, 85, 0.35) 0%, rgba(255, 105, 180, 0) 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+  animation: orbPulse 10s infinite alternate ease-in-out;
+}
+
+.bg-glow-orb-2 {
+  position: fixed;
+  bottom: -10%;
+  right: -10%;
+  width: 55vw;
+  height: 55vw;
+  max-width: 650px;
+  max-height: 650px;
+  background: radial-gradient(circle, rgba(255, 20, 147, 0.3) 0%, rgba(230, 0, 35, 0) 70%);
+  filter: blur(70px);
+  pointer-events: none;
+  z-index: 0;
+  animation: orbPulse 12s infinite alternate-reverse ease-in-out;
+}
+
+.bg-glow-orb-3 {
+  position: fixed;
+  top: 45%;
+  left: 30%;
+  width: 40vw;
+  height: 40vw;
+  max-width: 500px;
+  max-height: 500px;
+  background: radial-gradient(circle, rgba(255, 182, 193, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Reusable Glassmorphism Class */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: 24px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-panel:hover {
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-glow);
+  box-shadow: 0 16px 48px 0 rgba(255, 45, 85, 0.35);
+  transform: translateY(-4px);
+}
+
+.glass-pill {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 182, 193, 0.5);
+  border-radius: 50px;
+  padding: 6px 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #ffe6f0;
+  box-shadow: 0 4px 15px rgba(255, 20, 147, 0.2);
+}
+
+/* Red Heart Glowing Badge */
+.heart-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff2d55, #e60023);
+  box-shadow: 0 0 20px rgba(255, 45, 85, 0.8);
+  animation: heartPulse 2s infinite;
+}
+
+/* Custom Typography */
+.text-romantic {
+  font-family: var(--font-romantic);
+}
+
+.text-fancy {
+  font-family: var(--font-fancy);
+}
+
+.text-gradient-pink-red {
+  background: linear-gradient(135deg, #ffffff 0%, #ffb6c1 40%, #ff2d55 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #fff7d6 0%, #ffd700 50%, #ff8c00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Romantic Animations */
+@keyframes heartPulse {
+  0% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 45, 85, 0.6); }
+  50% { transform: scale(1.12); box-shadow: 0 0 28px rgba(255, 45, 85, 0.9); }
+  100% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 45, 85, 0.6); }
+}
+
+@keyframes orbPulse {
+  0% { transform: scale(1) translate(0, 0); }
+  100% { transform: scale(1.15) translate(30px, -20px); }
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(100vh) rotate(0deg) scale(0.6);
+    opacity: 0;
+  }
+  15% { opacity: 0.8; }
+  85% { opacity: 0.8; }
+  100% {
+    transform: translateY(-10vh) rotate(360deg) scale(1.2);
+    opacity: 0;
+  }
+}
+
+.floating-heart {
+  position: fixed;
+  pointer-events: none;
+  z-index: 1;
+  animation: floatUp 8s linear infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #120309;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #ff69b4, #ff2d55);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ff1493;
+}
