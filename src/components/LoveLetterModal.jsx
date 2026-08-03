@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, X, Heart, Sparkles, Feather } from 'lucide-react';
+import { Mail, X, Heart, Sparkles, Feather, ArrowLeft } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { LOVE_LETTER } from '../data/photos';
 
@@ -16,15 +16,23 @@ const LoveLetterModal = ({ isOpen, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-lg flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div
+      onClick={onClose}
+      className="fixed inset-0 z-50 bg-black/85 backdrop-blur-lg flex items-start sm:items-center justify-center p-3 sm:p-4 overflow-y-auto pt-10 sm:pt-4"
+    >
       {/* Modal Glass Container */}
-      <div className="relative max-w-2xl w-full glass-panel p-5 sm:p-10 bg-gradient-to-b from-pink-950/60 via-red-950/40 to-black/60 border-pink-400/50 my-6 sm:my-8 shadow-[0_0_50px_rgba(255,45,85,0.4)] animate-in fade-in zoom-in duration-300 rounded-3xl">
-        {/* Close Button */}
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="relative max-w-2xl w-full glass-panel p-5 pt-14 sm:pt-10 sm:p-10 bg-gradient-to-b from-pink-950/70 via-red-950/50 to-black/70 border-pink-400/50 my-4 sm:my-8 shadow-[0_0_50px_rgba(255,45,85,0.4)] animate-in fade-in zoom-in duration-300 rounded-3xl"
+      >
+        {/* Mobile-Friendly Top Close / Back Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2.5 rounded-full bg-pink-500/20 hover:bg-pink-500/40 text-pink-200 hover:text-white transition-colors cursor-pointer"
+          className="absolute top-3 right-3 sm:top-5 sm:right-5 px-3 py-2 rounded-full bg-gradient-to-r from-red-600 via-pink-600 to-red-500 text-white font-semibold text-xs flex items-center gap-1.5 shadow-lg border border-pink-200/50 hover:scale-105 active:scale-95 transition-all cursor-pointer z-30"
+          aria-label="Close Letter"
         >
-          <X className="w-5 h-5 sm:w-6 sm:h-6" />
+          <ArrowLeft className="w-4 h-4" />
+          <span>Back</span>
         </button>
 
         {/* Envelope Header Icon */}
@@ -67,16 +75,24 @@ const LoveLetterModal = ({ isOpen, onClose }) => {
           </div>
         </div>
 
-        {/* Interactive Button inside Modal */}
-        <div className="flex justify-center">
+        {/* Bottom Interactive Action Buttons */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <button
             onClick={() => {
               triggerLetterHearts();
             }}
-            className="px-6 py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-red-600 via-pink-600 to-red-500 text-white font-semibold text-xs sm:text-sm hover:scale-105 active:scale-95 transition-transform flex items-center gap-2 cursor-pointer shadow-lg"
+            className="w-full sm:w-auto px-6 py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-red-600 via-pink-600 to-red-500 text-white font-semibold text-xs sm:text-sm hover:scale-105 active:scale-95 transition-transform flex items-center justify-center gap-2 cursor-pointer shadow-lg"
           >
             <Heart className="w-4 h-4 fill-white animate-pulse" />
             <span>Send A Hug Back</span>
+          </button>
+
+          <button
+            onClick={onClose}
+            className="w-full sm:w-auto px-6 py-2.5 sm:py-3 rounded-full glass-panel bg-white/10 hover:bg-white/20 text-pink-200 font-semibold text-xs sm:text-sm border border-pink-300/40 hover:border-pink-300 hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer"
+          >
+            <X className="w-4 h-4 text-pink-300" />
+            <span>Close Letter</span>
           </button>
         </div>
       </div>
